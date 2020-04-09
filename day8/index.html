@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+    <h3 style="text-align: center;">Dibujar el camino del laberinto al lado de la imagen!</h3>
+<canvas id="draw" width="800" height="800"></canvas>
+
+    <div class="center">
+        <img src="laberinto.png" alt="Imagen generica" width="450" height="450"/>
+        <input type="button" value="Intentar de nuevo" onclick="javascript:window.location.reload();"/>
+    </div>
+
+<script>
+    const canvas = document.querySelector('#draw');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = 460;
+    ctx.strokeStyle = '#BADA55';
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 40;
+
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+    let hue = 0;
+    let direction = true;
+
+    function draw(e){
+        if (!isDrawing) return; //Stop the fn from running the are not moused down.
+        console.log(e);
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;  
+        //ctx.lineWidth = hue; //LineWidth
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+
+        hue++;
+        if(hue >= 360){
+            hue = 0;
+        }
+        
+        /*
+        if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
+            direction != direction;
+        }
+        if(direction){
+            ctx.lineWidth++;
+        } else {
+            ctx.lineWidth--;
+        }
+        */
+        
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+    });
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseout', () => isDrawing = false);
+
+</script>
+
+<style>
+  html, body {
+    margin: 0;
+  }
+
+  div img {
+    position: absolute;
+    top: 60px;
+    left: 50px;
+  }
+
+  div.center {
+    text-align: center;
+  }
+
+  input {
+    text-decoration: none;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #8d3535;
+    border-radius: 6px;
+    border: 2px solid #f1858e;
+    text-align: center;
+  }
+</style>
+
+</body>
+</html>
