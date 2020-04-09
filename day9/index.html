@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body style="background:darkgray;">
+
+  <h3 onClick="makeGreen()" style="text-align: right;">Have a look at the JavaScript Console to see the history!💪👆</h3>
+
+  <script>
+    const contagion = [{ sex: 'Masculino', age: 24, severity: false }, 
+    { sex: 'Femenino', age: 75, severity: true }];
+
+    function makeGreen() {
+      const p = document.querySelector('h3');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    //console.log('Hello 🙋‍♂️');
+
+    // Interpolated
+    console.log('Hello 🙋‍♂️, I am a %s because of coronavirus ☣.', '🐷');
+
+    // Styled
+    console.log('%c I CANT GO OUT! 🚷', 'font-size: 20px; background: red;');
+
+    // warning!
+    console.warn('FUCK CORONAVIRUSSSSSS!');
+
+    // Error :|
+    console.error('No vaccine 💉.');
+
+    // Info
+    console.info('You should stay at home!');
+
+    // Testing
+    const p = document.querySelector('h3');
+
+    console.assert(p.classList.contains('Vaccine'), 'Solution');
+
+    // clearing
+    //console.clear()
+
+    // Viewing DOM Elements
+    console.dir();
+
+    // Grouping together
+    console.log('In my town, there are two cases: ')
+    contagion.forEach( person => {
+        console.group(`${person.sex}`);
+        console.log(`This is severity: ${person.severity}`);
+        console.log(`${person.age} years old`);
+        console.groupEnd(`${person.sex}`); 
+    });
+
+    // counting
+    console.log('Number of infected in my town for sex: ');
+
+    console.count('Mens');
+    console.count('Women');
+
+    // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/aperezmm')
+        .then(data => data.json())
+        .then(data => {
+            console.timeEnd('fetching data');
+            console.log(data);
+        });
+    
+    //console.table(contagion);
+
+
+  </script>
+</body>
+</html>
