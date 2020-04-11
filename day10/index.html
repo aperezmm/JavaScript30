@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hold Shift to Check Multiple Checkboxes</title>
+</head>
+<body>
+  <style>
+
+    html {
+      font-family: sans-serif;
+      background: #b13323;
+    }
+
+    .inbox {
+      max-width: 400px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #F1F1F1;
+    }
+
+    .item:last-child {
+      border-bottom: 0;
+    }
+
+
+    input:checked + p {
+      background: #F9F9F9;
+      text-decoration: line-through;
+    }
+
+    input[type="checkbox"] {
+      margin: 20px;
+    }
+
+    p {
+      margin: 0;
+      padding: 20px;
+      transition: background 0.2s;
+      flex: 1;
+      font-family: 'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+      border-left: 1px solid #D1E2FF;
+    }
+
+    h2 {
+      font-family: 'helvetica neue';
+      flex: 2;
+      text-align: center;
+    }
+
+    .button {
+      text-decoration: none;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 20px;
+      color: #111010;
+      background-color: #ccd2d4;
+      border-radius: 6px;
+      border: 2px solid #121314;
+      float: none;
+      margin: auto;
+      display: block;
+      text-align: center;
+    }
+  </style>
+   <!--
+   The following is a common layout you would see in an email client.
+   When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes in-between those two checkboxes should be checked.
+  -->
+  <h2 class="h2">What kind of person you are ?</h2>
+  <div class="inbox">
+    <div class="item">
+      <input type="checkbox">
+      <p>Responsible</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Honest</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Respectful</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Carefuly</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Friendly</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Affectionate</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Loyal</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Lucky one</p>
+    </div>
+    <div class="item">
+      <input type="checkbox">
+      <p>Believer</p>
+    </div>
+  </div>
+
+  <a class="button" href="https://courses.wesbos.com/account/access/5e8296f36ccee4763b8cf0b7/view/194129765">Enviar</a>
+
+<script>
+    const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+    let lastChecked;
+
+    function handleCheck(e) {
+    // Check if they had the shift key down
+    // AND check that they are checking it
+    let inBetween = false;
+    var count = 0;
+      //e.shiftKey 
+    if (this.checked) {
+        // go ahead and do what we please
+        // loop over every single checkbox
+        checkboxes.forEach(checkbox => {
+        //console.log(checkbox);
+        if (checkbox === this || checkbox === lastChecked) {
+            inBetween = !inBetween;
+            console.log('Starting to check them in between!');
+        }     
+        /*
+        if(inBetween){
+          checkbox.checked = true;
+        }   
+        */
+
+        });
+    }
+
+    lastChecked = this;
+    }
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+</script>
+</body>
+</html>
