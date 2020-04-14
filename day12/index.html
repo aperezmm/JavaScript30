@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background: forestgreen;">
+    <h3 class="h3">Diminutivo Universidad de Antiquia: <input></h3>
+    <img class="foto1" src="logo-udea.png">
+    <p class="p">Si ya ingresaste el diminutivo, presiona las teclas (Crtl + Mayus + j)</p>
+<script>
+    const pressed = [];
+    const secretCode = 'udea';
+
+    window.addEventListener('keyup', (e) => {
+        console.log(e.key);
+        pressed.push(e.key);
+        pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+
+        if(pressed.join('').includes(secretCode)){
+            console.log('La mejor universidad <3 !');
+            cornify_add();
+        }else{
+            console.log('Ingresa udea');
+        }
+        console.log(pressed);
+    });
+</script>
+</body>
+</html>
