@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+    <div class="site-wrap">
+        <h2>Use's let:</h2>
+        <p class="p">let age = 100;<br>
+            let age2 = age;<br>
+            console.log(age, age2);<br>
+            age = 200;<br>
+            console.log(age, age2);<br>
+        </p>
+
+        <h2>Make copy, no changes to general:</h2>
+        <p class="p">const players = ['Alejandro', 'Isabella', 'Felix', 'Luz', 'Laura'];<br>
+            const team = [...players]; //Copy<br>
+            team[4] = 'Other name';<br>            
+        </p>
+
+        <h2>With objects:</h2>
+        <p class="p">const person = {<br>
+            name: 'Wes Bos',<br>
+            age: 80 };<br>
+            const captain = {...person};<br>
+            const captain = Object.assign({}, person, {number: 99, age: 12});<br>
+        </p>
+
+        <h1>See result on console!</h1>
+        <p>Crtl + Shif + J</p>
+
+
+
+    </div>
+
+
+    <script>
+        // start with strings, numbers and booleans
+        console.warn('Uses let');
+        let age = 100;
+        let age2 = age;
+        console.log(age, age2);
+        age = 200;
+        console.log(age, age2);
+
+        // let name = 'Alejo';
+        // let name2 = name;
+        // console.log(name, name2);
+        // name = 'Alejandro';
+        // console.log(name, name2);
+
+        // Let's say we have an array
+        const players = ['Alejandro', 'Isabella', 'Felix', 'Luz', 'Laura'];
+        
+
+        // and we want to make a copy of it.
+        const team = players;
+
+        //console.log(team, players);
+
+        // You might think we can just do something like this:
+        team[3] = 'Luz Elena';
+        
+        //console.log(team, players);
+
+        // however what happens when we update that array?
+
+        // now here is the problem!
+
+        // oh no - we have edited the original array too!
+
+        // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+
+        // So, how do we fix this? We take a copy instead!
+        const team2 = players.slice();
+
+        // one way
+
+        // or create a new array and concat the old one in
+        const team3 = [].concat(players);
+
+        // or use the new ES6 Spread
+        const team4 = [...players];
+        team4[4] = 'Congratulations';
+        console.warn('Make copy, no changes to general: ')
+        console.log(team4);
+
+        const teams = Array.from(players);
+
+        // now when we update it, the original one isn't changed
+
+        // The same thing goes for objects, let's say we have a person object
+
+        // with Objects
+        console.warn('With objects: ')
+        console.log('Object general')
+        const person = {
+        name: 'Wes Bos',
+        age: 80
+        };
+        console.log(person);
+
+        // and think we make a copy:
+        const captain = person;
+        captain.number = 99;
+
+        // how do we take a copy instead?
+        console.log('Object with changes')
+        const captain2 = Object.assign({}, person, {number: 99, age: 12});
+        console.log(captain2);
+
+        // We will hopefully soon see the object ...spread
+        const captain3 = {...person};
+
+        // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+        const wes = {
+            name: 'Alejandro',
+            age: 100,
+            social: {
+                twitter: '@aperezmm',
+                instragram: '@aperezmm'
+            }
+        };
+
+        //console.log(wes);
+
+        const dev = Object.assign({}, wes);
+
+        //console.log(dev);
+
+        const dev2 = JSON.parse(JSON.stringify(wes));
+
+    </script>
+
+<style>
+    html {
+      box-sizing: border-box;
+      background: #999090;
+      font-family: 'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+    }
+    
+    body {
+      margin: 0;
+    }
+    
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-family: monospace;
+      text-align: center;
+    }
+
+    p {
+        font-family: monospace;
+        text-align: center;
+        color: white;
+        background-color: black;
+    }
+
+    .site-wrap {
+      max-width: 700px;
+      margin: 100px auto;
+      background: white;
+      padding: 40px;
+      text-align: justify;
+      font-family: monospace;
+      text-align: center;
+    }
+</style>
+
+</body>
+</html>
