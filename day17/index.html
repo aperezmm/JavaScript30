@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sort Without Articles</title>
+</head>
+<body>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: monospace;
+      background: darkgray;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #bands {
+      font-size: 20px;
+      background: white;
+      width: 500px;
+      margin: auto;
+      padding: 0;
+      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+    
+    #bands input{
+        display:none;
+        content: '⚽';
+    }
+    
+    #bands li {
+      border-bottom: 1px solid #efefef;
+      padding: 20px;
+    }
+    
+    #bands input:checked{
+        content: '⚽';
+    }
+
+    li {
+        content: '⚽';
+    }
+
+    #bands li:last-child {
+      border-bottom: 0;
+    }
+
+    a {
+      color: #ffc600;
+      text-decoration: none;
+    }
+
+  </style>
+
+  <ul id="bands">
+      <li>Loading bands!</li>
+  </ul>
+
+<script>
+    const bands = ['The Killers', 'System of a Down', 'The Cranberries', 'Pink Floyd', 'Despeche Mode', 'Rammstein', 'Eagles', 'Blinding Lights', 'Sub Urban', 'The Black Eyes Peas ', 'Gorillaz', 'An Old Dog'];
+
+    function strip(bandName){
+        return bandName.replace(/^(a | the |an)/i, '').trim();
+    }
+
+    const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+        // if(a > b){
+        //     return 1;
+        // } else {
+        //     return -1;
+        // }
+
+    document.querySelector('#bands').innerHTML =
+        sortedBands
+            .map(band => `<li> 
+                    🤟 ${band}
+                </li>`)
+            .join('');
+
+
+    console.log(sortedBands);
+
+
+
+
+</script>
+
+</body>
+</html>
