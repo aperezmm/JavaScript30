@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Videos</title>
+</head>
+<body style="background: darkgrey;">
+  <ul class="videos" style="font-family: monospace; background-color: white;">
+    <h2>El tiempo total de reproducción de los videos:</h2>
+    <p style="color: aliceblue; background-color: black;"><em>Presione = Crtl + Shift + J</em></p>
+    <p style="color: aliceblue; background-color: black;"><em>O abra la consola para conocerlo</em></p>
+    <li data-time="3:46">
+        <a href="https://www.youtube.com/watch?v=ZaI2IlHwmgQ&list=RDZaI2IlHwmgQ&start_radio=1&t=0">The Black Eyes Peas - Pump It</a>
+    </li>
+    <li data-time="4:29">
+        <a href="https://www.youtube.com/watch?v=1V_xRb0x9aw&list=RDZaI2IlHwmgQ&index=2">Gorillaz - Clint Eastwood</a>
+    </li>
+    <li data-time="6:18">
+        <a href="https://www.youtube.com/watch?v=u9LH_y159sg&list=RDZaI2IlHwmgQ&index=3">The Black Eyed Peas - Don't Stop The Party</a>
+    </li>
+    <li data-time="3:38">
+        <a href="https://www.youtube.com/watch?v=EzKkl64rRbM&list=RDZaI2IlHwmgQ&index=4">The Black Eyed Peas, J Balvin - RITMO</a>
+    </li>
+    <li data-time="5:59">
+        <a href="https://www.youtube.com/watch?v=us3tczsrKQc&list=RDZaI2IlHwmgQ&index=5">Danza Kuduro - Don Omar ft Lucenzo, Daddy Yankee & Árcangel</a>
+    </li>
+    <li data-time="4:03">
+        <a href="https://www.youtube.com/watch?v=G9GAirS_xBE&list=RDZaI2IlHwmgQ&index=6">Eminem - Without Me</a>
+    </li>
+    <li data-time="5:12">
+        <a href="https://www.youtube.com/watch?v=JwQZQygg3Lk&list=RDZaI2IlHwmgQ&index=7">The Black Eyed Peas - The Time</a>
+    </li>
+    <li data-time="4:12">
+        <a href="https://www.youtube.com/watch?v=WpYeekQkAdc&list=RDZaI2IlHwmgQ&index=8">The Black Eyed Peas - Where Is The Love?</a>
+    </li>
+    <li data-time="6:12">
+        <a href="https://www.youtube.com/watch?v=-QHd4JKg3yQ&list=RDZaI2IlHwmgQ&index=9">Party Animal Remix - Daddy Yankee ft Maluma, Farruko, Charly Black, Boy C</a>
+    </li>
+    <li data-time="5:21">
+        <a href="https://www.youtube.com/watch?v=FGBhQbmPwH8&list=RDZaI2IlHwmgQ&index=10">Daft Punk - One More Time</a>
+    </li>
+    <li data-time="4:18">
+        <a href="https://www.youtube.com/watch?v=MrTz5xjmso4&list=RDZaI2IlHwmgQ&index=11">Sean Kingston - Beatiful Girls</a>
+    </li>
+    <li data-time="3:55">
+        <a href="https://www.youtube.com/watch?v=iEe_eraFWWs&list=RDZaI2IlHwmgQ&index=12">The Black Eyed Peas - My Humps</a>
+    </li>
+    <li data-time="4:51">
+        <a href="https://www.youtube.com/watch?v=uSD4vsh1zDA&list=RDZaI2IlHwmgQ&index=13">The Black Eyed Peas - I Gotta Feeling</a>
+    </li>
+
+    
+  </ul>
+<script>
+    const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
+
+    const seconds = timeNodes
+        .map(node => node.dataset.time)
+        .map(timeCode => {
+            const [mins, secs] = timeCode.split(':').map(parseFloat);
+            return (mins * 60) + secs;      
+            console.log(mins, secs);      
+        })
+        .reduce((total, vidSeconds) => total + vidSeconds);
+
+        let secondsLeft = seconds;
+        const hours = Math.floor(seconds / 3600);
+        secondsLeft = secondsLeft % 3600;
+
+        const mins = Math.floor(secondsLeft / 60);
+        secondsLeft = secondsLeft % 60;
+        console.info('Horas:');
+        console.log(hours);
+        console.info('Minutos:');
+        console.log(mins);
+        console.info('Secundos:');
+        console.log(secondsLeft);
+</script>
+</body>
+</html>
