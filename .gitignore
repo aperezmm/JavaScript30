@@ -17,6 +17,10 @@
 *.tar
 *.zip
 
+#Dependencies
+node_modules
+*/node_modules/*
+
 #Logs and database#
 
 *.log
