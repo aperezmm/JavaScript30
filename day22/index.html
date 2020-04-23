@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>👀👀👀Follow Along Nav</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+      <ul class="menu">
+        <li><h2 href="">FIND THE HIDDEN WORDS 🧐🧐</h2></li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+      <p>La primera de las leyendas urbanas de <a href="">Dross</a> habla acerca de dos compañeras de <a href="">estudio</a> que tenían personalidades muy diferentes.</p>
+      <p>Una era muy <a href="">estudiosa</a> la otra disfrutaba las salidas y las fiestas. Una <a href="">noche</a>, antes de un examen, la estudiosa decide quedarse a repasar y su amiga se va de fiesta.</p>
+      <p>Al <a href="">regresar</a> por la <a href="">noche</a>, y sin querer encender la luz para no <a href="">molestarla</a>, la alumna fiestera avanza entre tropiezos hasta subirse a la <a href="">litera</a> superior y dormir.</p>
+      <p>Escucha unos sonidos provenientes de la <a href="">cama</a> de su amiga, pero como no la saluda <a href="">prefiere</a> no molestarla e ir a dormir.</p>
+      <p>Al saltar de la cama y <a href="">despertar</a> para ir al examen ve una <a href="">imagen aterradora.</a> Su amiga está <a href="">muerta</a> con el estomago abierto como si le hubieran practicado una <a href="">autopsia</a>.</p>
+      <p>Al costado, escrito en la <a href="">pared</a> con sangre, un mensaje aterrador: "¿No te alegra haber dejado la luz <a href="">apagada</a>?"</p>
+    </div>
+
+  <script>
+    const triggers = document.querySelectorAll('a');
+    const highlight = document.createElement('span');
+    highlight.classList.add('highlight');
+    document.body.append(highlight);
+
+    function highlightLink(){
+      const linkCoords = this.getBoundingClientRect();
+
+      const coords = {
+        width: linkCoords.width,
+        height: linkCoords.height,
+        top: linkCoords.top + window.scrollY,
+        left: linkCoords.left + window.scrollX
+      };
+
+      highlight.style.width = `${coords.width}px`;
+      highlight.style.height = `${coords.height}px`;
+      highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+      alert('You found a word, CONGRATULATIONS! 💯');
+
+    }
+
+    triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));  
+      
+  </script>
+</body>
+</html>
