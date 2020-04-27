@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sticky Nav</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h2>Find the end!</h2>
+  </header>
+
+  <nav id="main">
+    <ul>
+      <li class="logo"><a href="#">BUUUUUUU</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Images</a></li>
+      <li><a href="#">Locations</a></li>
+      <li><a href="#">Maps</a></li>
+    </ul>
+  </nav>
+
+  <div class="site-wrap">
+    <h3 style="text-align: center;">Las islas de las muñecas</h3>
+    <p>Parece un escenario sacado de una película, pero es real. Existe una isla ubicada en el centro-sur de Ciudad de México en la que reinan miles de muñecas antiguas. Abandonadas a modo de ofrenda, algunas de sus cabezas se exhiben clavadas en estacas, mientras que otras permanecen colgadas de los árboles. La historia se remonta a 1950, cuando el propietario del terreno, Julián Santana, empezó a colgar muñecas como protección contra los malos espíritus.</p>
+    <p>Santana creía que había sido maldito. Tiempo atrás, había encontrado el cuerpo de una joven que había fallecido ahogada a orillas de los terrenos del hombre. Empezó a convertirse en protagonista de episodios paranormales: oía voces, pasos y el llanto de una mujer, por lo que decidió colocar muñecas por la isla para ahuyentar el alma de la chica. Su obsesión llegó hasta tal punto que pasaba las horas buscando muñecas en las basura y en los canales de Cuemanco.</p>
+    <p>Santana falleció en 2001 cuando se encontraba a orillas del río, justo después de comentarle a su sobrino que una sirena quería llevárselo. Ahora, el lugar se ha convertido en un sitio turístico y las autoridades de la región se plantean crear un museo para conservar las muñecas.</p>
+       
+    <img src="muñecas.png" class="center" width="570" height="330">
+
+    </div>
+
+<script>
+    // Not a ton of code, but hard to
+    const nav = document.querySelector('#main');
+    let topOfNav = nav.offsetTop;
+
+    function fixNav() {
+      if (window.scrollY >= topOfNav) {
+        document.body.style.paddingTop = nav.offsetHeight + 'px';
+        document.body.classList.add('fixed-nav');
+      } else {
+        document.body.classList.remove('fixed-nav');
+        document.body.style.paddingTop = 0;
+      }
+    }
+
+    window.addEventListener('scroll', fixNav);
+
+</script>
+
+</body>
+</html>
